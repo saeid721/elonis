@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Link, NavLink, useNavigate, useLocation } from 'react-router-dom';
-import { Container, Nav, Offcanvas, Form, InputGroup, Button } from 'react-bootstrap';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { Container, Offcanvas, Form, InputGroup, Button } from 'react-bootstrap';
 import useCartStore from '../../../app/store';
 import useDebounce from '../../../hooks/useDebounce';
 import { PHONE } from '../../../utils';
@@ -8,23 +8,22 @@ import './Header.scss';
 import logo from '../../../assets/images/logo.png';
 
 // ─── Icons ────────────────────────────────────────────────────────
-const HomeIcon    = () => (<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>);
-const ChevronDown = () => (<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="6 9 12 15 18 9"/></svg>);
-const ChevronRight= () => (<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 6 15 12 9 18"/></svg>);
+const HomeIcon     = () => (<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>);
+const ChevronDown  = () => (<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="6 9 12 15 18 9"/></svg>);
 
-// ─── Nav data ─────────────────────────────────────────────────────
+// ─── Nav Data ─────────────────────────────────────────────────────
 export const NAV_LINKS = [
   {
     label: 'MAN', href: '/man',
     children: [
-      { label: 'Eid 26',        href: '/product-list/68' },
-      { label: 'Ethnic Wear',   href: '/product-list/18', children: [
+      { label: 'Eid 26',         href: '/product-list/68' },
+      { label: 'Ethnic Wear',    href: '/product-list/18', children: [
         { label: 'Panjabi', href: '/products/20' },
         { label: 'Kabli',   href: '/products/21' },
         { label: 'Vest',    href: '/products/22' },
       ]},
-      { label: 'T-Shirt',       href: '/product-list/19' },
-      { label: 'Shirt',         href: '/product-list/4',  children: [
+      { label: 'T-Shirt',        href: '/product-list/19' },
+      { label: 'Shirt',          href: '/product-list/4', children: [
         { label: 'Formal',      href: '/products/1'  },
         { label: 'Casual',      href: '/products/2'  },
         { label: 'Half Sleeve', href: '/products/72' },
@@ -33,8 +32,8 @@ export const NAV_LINKS = [
         { label: 'Solid',       href: '/products/74' },
         { label: 'Club',        href: '/products/75' },
       ]},
-      { label: 'Polo',          href: '/product-list/3'  },
-      { label: 'Bottom',        href: '/product-list/5',  children: [
+      { label: 'Polo',           href: '/product-list/3' },
+      { label: 'Bottom',         href: '/product-list/5', children: [
         { label: 'Jeans',   href: '/products/7'  },
         { label: 'Chinos',  href: '/products/4'  },
         { label: 'Formal',  href: '/products/3'  },
@@ -43,21 +42,21 @@ export const NAV_LINKS = [
         { label: 'Shorts',  href: '/products/6'  },
         { label: 'Pajama',  href: '/products/44' },
       ]},
-      { label: 'Suits & Blazer',href: '/product-list/72' },
-      { label: 'Winterwear',    href: '/product-list/70', children: [
-        { label: 'Winter Shirt',href: '/products/85' },
-        { label: 'Jacket',      href: '/products/61' },
-        { label: 'Sweater',     href: '/products/62' },
-        { label: 'Sweatshirt',  href: '/products/63' },
-        { label: 'Hoodie',      href: '/products/64' },
+      { label: 'Suits & Blazer', href: '/product-list/72' },
+      { label: 'Winterwear',     href: '/product-list/70', children: [
+        { label: 'Winter Shirt', href: '/products/85' },
+        { label: 'Jacket',       href: '/products/61' },
+        { label: 'Sweater',      href: '/products/62' },
+        { label: 'Sweatshirt',   href: '/products/63' },
+        { label: 'Hoodie',       href: '/products/64' },
       ]},
-      { label: 'Underwear',     href: '/product-list/57' },
-      { label: 'Footwear',      href: '/product-list/6',  children: [
+      { label: 'Underwear',      href: '/product-list/57' },
+      { label: 'Footwear',       href: '/product-list/6', children: [
         { label: 'Sneakers', href: '/products/32' },
         { label: 'Sandal',   href: '/products/30' },
         { label: 'Boot',     href: '/products/33' },
       ]},
-      { label: 'Accessories',   href: '/product-list/42', children: [
+      { label: 'Accessories',    href: '/product-list/42', children: [
         { label: 'Mask',  href: '/products/27' },
         { label: 'Socks', href: '/products/28' },
         { label: 'Tie',   href: '/products/41' },
@@ -68,30 +67,30 @@ export const NAV_LINKS = [
   {
     label: 'WOMAN', href: '/woman',
     children: [
-      { label: 'Eid 26',         href: '/product-list/69' },
-      { label: 'Western Wear',   href: '/product-list/8',  children: [
+      { label: 'Eid 26',          href: '/product-list/69' },
+      { label: 'Western Wear',    href: '/product-list/8', children: [
         { label: 'Tops',          href: '/products/77' },
         { label: 'T-Shirt',       href: '/products/78' },
         { label: 'Summer Blazer', href: '/products/84' },
         { label: 'Casual Shirt',  href: '/products/9'  },
         { label: 'Long Shirt',    href: '/products/10' },
       ]},
-      { label: 'Traditional Wear',href: '/product-list/9',  children: [
+      { label: 'Traditional Wear',href: '/product-list/9', children: [
         { label: 'Kameez', href: '/products/79' },
         { label: 'Kurti',  href: '/products/80' },
         { label: 'Kaftan', href: '/products/81' },
       ]},
-      { label: 'Dress',          href: '/product-list/34' },
-      { label: 'Co-ord Sets',    href: '/product-list/71' },
-      { label: 'Winterwear',     href: '/product-list/39', children: [
-        { label: 'Hoodie',    href: '/products/86' },
-        { label: 'Jacket',    href: '/products/34' },
-        { label: 'Overcoat',  href: '/products/36' },
-        { label: 'Poncho',    href: '/products/53' },
-        { label: 'Sweater',   href: '/products/55' },
+      { label: 'Dress',           href: '/product-list/34' },
+      { label: 'Co-ord Sets',     href: '/product-list/71' },
+      { label: 'Winterwear',      href: '/product-list/39', children: [
+        { label: 'Hoodie',   href: '/products/86' },
+        { label: 'Jacket',   href: '/products/34' },
+        { label: 'Overcoat', href: '/products/36' },
+        { label: 'Poncho',   href: '/products/53' },
+        { label: 'Sweater',  href: '/products/55' },
       ]},
-      { label: 'Shrug',          href: '/product-list/13' },
-      { label: 'Bottoms',        href: '/product-list/11', children: [
+      { label: 'Shrug',           href: '/product-list/13' },
+      { label: 'Bottoms',         href: '/product-list/11', children: [
         { label: 'Jeans',          href: '/products/11' },
         { label: 'Skirts/Palazzo', href: '/products/14' },
         { label: 'Pants',          href: '/products/15' },
@@ -102,16 +101,16 @@ export const NAV_LINKS = [
   {
     label: 'LIFESTYLE', href: '/lifestyle',
     children: [
-      { label: 'Wallet/Money Clip',         href: '/product-list/22' },
-      { label: 'Perfume',                   href: '/product-list/23', children: [
+      { label: 'Wallet/Money Clip',        href: '/product-list/22' },
+      { label: 'Perfume',                  href: '/product-list/23', children: [
         { label: 'Man', href: '/products/65' },
       ]},
-      { label: 'Privilege Card/Gold Card',  href: '/product-list/27' },
-      { label: 'Bag',                       href: '/product-list/29', children: [
+      { label: 'Privilege Card/Gold Card', href: '/product-list/27' },
+      { label: 'Bag',                      href: '/product-list/29', children: [
         { label: 'Man',   href: '/products/67' },
         { label: 'Woman', href: '/products/68' },
       ]},
-      { label: 'Sunglass',                  href: '/product-list/59', children: [
+      { label: 'Sunglass',                 href: '/product-list/59', children: [
         { label: 'Man',   href: '/products/69' },
         { label: 'Woman', href: '/products/70' },
       ]},
@@ -120,69 +119,125 @@ export const NAV_LINKS = [
   { label: 'GIFT VOUCHER', href: '/gift-voucher' },
 ];
 
-// ─── Mega dropdown sub-item (with optional 3rd-level flyout) ──────
-const MegaSubItem = ({ item }) => {
-  const [open, setOpen] = useState(false);
-  const hasChildren = item.children?.length > 0;
+// ─── Desktop Mega Menu ────────────────────────────────────────────
+// Full-width click-based nav: click top item → sub-bar appears
+// click sub-item with children → child-bar appears below
+const DesktopNav = () => {
+  const [activeTop, setActiveTop]   = useState(null); // label of active top item
+  const [activeSub, setActiveSub]   = useState(null); // label of active sub item
+  const navRef                      = useRef(null);
+  const location                    = useLocation();
+
+  // Close everything on route change
+  useEffect(() => {
+    setActiveTop(null);
+    setActiveSub(null);
+  }, [location]);
+
+  // Close on outside click
+  useEffect(() => {
+    const handler = (e) => {
+      if (navRef.current && !navRef.current.contains(e.target)) {
+        setActiveTop(null);
+        setActiveSub(null);
+      }
+    };
+    document.addEventListener('mousedown', handler);
+    return () => document.removeEventListener('mousedown', handler);
+  }, []);
+
+  const activeTopItem = NAV_LINKS.find((n) => n.label === activeTop);
+  const activeSubItem = activeTopItem?.children?.find((c) => c.label === activeSub);
+
+  const handleTopClick = (item) => {
+    if (!item.children?.length) {
+      setActiveTop(null);
+      setActiveSub(null);
+      return;
+    }
+    if (activeTop === item.label) {
+      setActiveTop(null);
+      setActiveSub(null);
+    } else {
+      setActiveTop(item.label);
+      setActiveSub(null);
+    }
+  };
+
+  const handleSubClick = (item) => {
+    if (!item.children?.length) {
+      setActiveSub(null);
+      return;
+    }
+    setActiveSub(activeSub === item.label ? null : item.label);
+  };
 
   return (
-    <div
-      className={`mega-sub ${hasChildren ? 'mega-sub--has-children' : ''}`}
-      onMouseEnter={() => hasChildren && setOpen(true)}
-      onMouseLeave={() => hasChildren && setOpen(false)}
-    >
-      <Link to={item.href} className="mega-sub__link">
-        <span>{item.label}</span>
-        {hasChildren && <ChevronRight />}
-      </Link>
+    <div ref={navRef} className="desktop-nav">
 
-      {hasChildren && open && (
-        <div className="mega-sub__flyout">
-          {item.children.map((child) => (
-            <Link key={child.href} to={child.href} className="mega-sub__flyout-link">
-              {child.label}
+      {/* ── Row 1: Top-level items ── */}
+      <div className="desktop-nav__top-bar">
+        <Container fluid="xl">
+          <div className="d-flex align-items-center">
+
+            <Link to="/" className="desktop-nav__home" onClick={() => { setActiveTop(null); setActiveSub(null); }}>
+              <HomeIcon />
             </Link>
-          ))}
+
+            {NAV_LINKS.map((item) => (
+              <button
+                key={item.href}
+                className={`desktop-nav__top-item ${activeTop === item.label ? 'desktop-nav__top-item--active' : ''}`}
+                onClick={() => handleTopClick(item)}
+              >
+                {item.label}
+                {item.children?.length > 0 && (
+                  <span className={`desktop-nav__chevron ${activeTop === item.label ? 'desktop-nav__chevron--open' : ''}`}>
+                    <ChevronDown />
+                  </span>
+                )}
+              </button>
+            ))}
+          </div>
+        </Container>
+      </div>
+
+      {/* ── Row 2: Sub-level items (shown when top item clicked) ── */}
+      {activeTopItem?.children?.length > 0 && (
+        <div className="desktop-nav__sub-bar">
+          <Container fluid="xl">
+            <div className="d-flex align-items-center flex-wrap">
+              {activeTopItem.children.map((sub) => (
+                <button
+                  key={sub.href}
+                  className={`desktop-nav__sub-item ${activeSub === sub.label ? 'desktop-nav__sub-item--active' : ''} ${sub.children?.length ? 'desktop-nav__sub-item--has-child' : ''}`}
+                  onClick={() => handleSubClick(sub)}
+                >
+                  {sub.label}
+                </button>
+              ))}
+            </div>
+          </Container>
         </div>
       )}
-    </div>
-  );
-};
 
-// ─── Desktop mega dropdown ────────────────────────────────────────
-const MegaNav = ({ item }) => {
-  const [open, setOpen] = useState(false);
-  const ref = useRef(null);
-  const location = useLocation();
-  const hasChildren = item.children?.length > 0;
-
-  // Close on route change
-  useEffect(() => { setOpen(false); }, [location]);
-
-  return (
-    <div
-      ref={ref}
-      className={`mega-nav ${open ? 'mega-nav--open' : ''}`}
-      onMouseEnter={() => hasChildren && setOpen(true)}
-      onMouseLeave={() => hasChildren && setOpen(false)}
-    >
-      <Link
-        to={item.href}
-        className={`site-header__nav-link ${open ? 'site-header__nav-link--active' : ''}`}
-      >
-        {item.label}
-        {hasChildren && (
-          <span className="site-header__nav-chevron">
-            <ChevronDown />
-          </span>
-        )}
-      </Link>
-
-      {hasChildren && open && (
-        <div className="mega-nav__panel">
-          {item.children.map((child) => (
-            <MegaSubItem key={child.href} item={child} />
-          ))}
+      {/* ── Row 3: Child-level items (shown when sub item clicked) ── */}
+      {activeSubItem?.children?.length > 0 && (
+        <div className="desktop-nav__child-bar">
+          <Container fluid="xl">
+            <div className="d-flex align-items-center flex-wrap">
+              {activeSubItem.children.map((child) => (
+                <Link
+                  key={child.href}
+                  to={child.href}
+                  className="desktop-nav__child-item"
+                  onClick={() => { setActiveTop(null); setActiveSub(null); }}
+                >
+                  {child.label}
+                </Link>
+              ))}
+            </div>
+          </Container>
         </div>
       )}
     </div>
@@ -192,7 +247,7 @@ const MegaNav = ({ item }) => {
 // ─── Mobile accordion item ────────────────────────────────────────
 const MobileNavItem = ({ item, depth = 0, onClose }) => {
   const [open, setOpen] = useState(false);
-  const hasChildren = item.children?.length > 0;
+  const hasChildren     = item.children?.length > 0;
 
   return (
     <div className={`mobile-nav__item mobile-nav__item--d${depth}`}>
@@ -214,7 +269,6 @@ const MobileNavItem = ({ item, depth = 0, onClose }) => {
           </button>
         )}
       </div>
-
       {hasChildren && open && (
         <div className="mobile-nav__children">
           {item.children.map((child) => (
@@ -249,10 +303,14 @@ const LoginDropdown = ({ onClose }) => {
         <div className="login-dropdown__field">
           <label className="login-dropdown__label">Password</label>
           <div className="login-dropdown__input-wrap">
-            <input type={showPass ? 'text' : 'password'} placeholder="Write your password"
-              className="login-dropdown__input" value={loginData.password}
-              onChange={(e) => setLoginData({ ...loginData, password: e.target.value })} />
-            <button type="button" className="login-dropdown__eye" onClick={() => setShowPass(!showPass)}>
+            <input
+              type={showPass ? 'text' : 'password'}
+              placeholder="Write your password"
+              className="login-dropdown__input"
+              value={loginData.password}
+              onChange={(e) => setLoginData({ ...loginData, password: e.target.value })}
+            />
+            <button type="button" className="login-dropdown__eye" onClick={() => setShowPass(!showPass)} aria-label="Toggle password">
               {showPass ? (
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                   <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/>
@@ -261,7 +319,8 @@ const LoginDropdown = ({ onClose }) => {
                 </svg>
               ) : (
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                  <circle cx="12" cy="12" r="3"/>
                 </svg>
               )}
             </button>
@@ -274,8 +333,14 @@ const LoginDropdown = ({ onClose }) => {
         </div>
       </form>
 
-      <div className="login-dropdown__meta"><span>New customer?</span><Link to="/register" onClick={onClose}>Create your account</Link></div>
-      <div className="login-dropdown__meta"><span>Lost password?</span><Link to="/forgot-password" onClick={onClose}>Reset account</Link></div>
+      <div className="login-dropdown__meta">
+        <span>New customer?</span>
+        <Link to="/register" onClick={onClose}>Create your account</Link>
+      </div>
+      <div className="login-dropdown__meta">
+        <span>Lost password?</span>
+        <Link to="/forgot-password" onClick={onClose}>Reset account</Link>
+      </div>
 
       <form onSubmit={handleTrack} className="login-dropdown__track">
         <label className="login-dropdown__label">Track Your Order</label>
@@ -293,8 +358,8 @@ const Header = () => {
   const [scrolled,      setScrolled]      = useState(false);
   const [searchQuery,   setSearchQuery]   = useState('');
   const [showLoginDrop, setShowLoginDrop] = useState(false);
-  const loginRef = useRef(null);
-  const navigate = useNavigate();
+  const loginRef   = useRef(null);
+  const navigate   = useNavigate();
   const totalItems = useCartStore((s) => s.items.reduce((a, i) => a + i.quantity, 0));
 
   useDebounce(searchQuery, 400);
@@ -321,7 +386,7 @@ const Header = () => {
   return (
     <header className={`site-header ${scrolled ? 'site-header--scrolled' : ''}`}>
 
-      {/* Top bar */}
+      {/* ── Top info bar ── */}
       <div className="site-header__topbar d-none d-lg-block">
         <Container>
           <div className="d-flex justify-content-between align-items-center py-1">
@@ -332,7 +397,7 @@ const Header = () => {
         </Container>
       </div>
 
-      {/* Main row */}
+      {/* ── Main row ── */}
       <div className="site-header__main">
         <Container>
           <div className="d-flex align-items-center justify-content-between gap-3 py-2">
@@ -362,7 +427,7 @@ const Header = () => {
             </Link>
 
             <div className="d-flex align-items-center gap-3">
-              {/* Login dropdown */}
+
               <div className="site-header__login-wrap d-none d-lg-block" ref={loginRef}>
                 <button className="site-header__login-btn" onClick={() => setShowLoginDrop((v) => !v)} aria-label="Account">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -377,7 +442,6 @@ const Header = () => {
                 {showLoginDrop && <LoginDropdown onClose={() => setShowLoginDrop(false)} />}
               </div>
 
-              {/* Cart */}
               <Link to="/cart" className="site-header__action site-header__cart">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
@@ -391,24 +455,12 @@ const Header = () => {
         </Container>
       </div>
 
-      {/* Desktop mega nav */}
-      <nav className="site-header__nav d-none d-lg-block">
-        <Container fluid="xl">
-          <div className="d-flex align-items-center">
-            {/* Home icon */}
-            <Link to="/" className="site-header__nav-home">
-              <HomeIcon />
-            </Link>
+      {/* ── Desktop mega nav (click-based, full-width bars) ── */}
+      <div className="d-none d-lg-block">
+        <DesktopNav />
+      </div>
 
-            {/* Mega nav items */}
-            {NAV_LINKS.map((link) => (
-              <MegaNav key={link.href} item={link} />
-            ))}
-          </div>
-        </Container>
-      </nav>
-
-      {/* Mobile Offcanvas */}
+      {/* ── Mobile Offcanvas ── */}
       <Offcanvas show={showOffcanvas} onHide={() => setShowOffcanvas(false)} className="site-header__offcanvas">
         <Offcanvas.Header closeButton>
           <Offcanvas.Title>
@@ -428,7 +480,6 @@ const Header = () => {
             </InputGroup>
           </Form>
 
-          {/* Mobile accordion nav */}
           <div className="mobile-nav">
             {NAV_LINKS.map((link) => (
               <MobileNavItem key={link.href} item={link} onClose={() => setShowOffcanvas(false)} />

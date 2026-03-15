@@ -1,15 +1,14 @@
+// ─── Site Header ──────────────────────────────────────────────────
 .site-header {
   position: sticky;
   top: 0;
-  z-index: 1000;
+  z-index: 900;
   background: #fff;
   transition: box-shadow 0.25s ease;
 
-  &--scrolled {
-    box-shadow: 0 2px 16px rgba(0,0,0,.1);
-  }
+  &--scrolled { box-shadow: 0 2px 16px rgba(0,0,0,.1); }
 
-  // ── Top bar ──────────────────────────────────────────────
+  // ── Top bar ────────────────────────────────────────────────
   &__topbar {
     background: #f5f5f5;
     border-bottom: 1px solid #ebebeb;
@@ -25,68 +24,72 @@
     }
   }
 
-  // ── Main row ─────────────────────────────────────────────
-  &__main {
-    border-bottom: 1px solid #ebebeb;
-    background: #fff;
-  }
+  // ── Main row ───────────────────────────────────────────────
+  &__main { border-bottom: 1px solid #ebebeb; background: #fff; }
 
-  // ── Logo ─────────────────────────────────────────────────
+  // ── Logo ───────────────────────────────────────────────────
+  &__logo { flex-shrink: 0; text-decoration: none; }
+
   &__logo-img {
     height: 42px;
     width: auto;
     display: block;
     object-fit: contain;
 
-    @media (min-width: 992px) {
-      height: 55px;
-    }
+    @media (min-width: 992px) { height: 55px; }
   }
 
-  // ── Search ───────────────────────────────────────────────
-  &__search {
-    max-width: 520px;
+  // ── Search ─────────────────────────────────────────────────
+  &__search { max-width: 520px; }
 
-    &-input {
-      border-right: none;
-      border-radius: 6px 0 0 6px !important;
-      font-size: 0.9rem;
-      padding: 0.5rem 0.85rem;
+  &__search-input {
+    border-right: none;
+    border-radius: 6px 0 0 6px !important;
+    font-size: 0.9rem;
+    padding: 0.5rem 0.85rem;
 
-      &:focus {
-        box-shadow: none;
-        border-color: #FF6503;
-      }
-    }
-
-    &-btn {
-      background: #FF6503 !important;
-      border: none !important;
-      border-radius: 0 6px 6px 0 !important;
-      padding: 0 1rem;
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      &:hover { background: #e05500 !important; }
-    }
+    &:focus { box-shadow: none; border-color: #FF6503; }
   }
 
-  // ── Actions ──────────────────────────────────────────────
+  &__search-btn {
+    background: #FF6503 !important;
+    border: none !important;
+    border-radius: 0 6px 6px 0 !important;
+    padding: 0 1rem;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover { background: #e05500 !important; }
+  }
+
+  // ── Phone ──────────────────────────────────────────────────
+  &__phone-link {
+    color: #1a1a1a;
+    text-decoration: none;
+    font-size: 0.85rem;
+    white-space: nowrap;
+    transition: color 0.2s;
+    gap: 4px;
+
+    &:hover { color: #FF6503; }
+  }
+
+  // ── Actions ────────────────────────────────────────────────
   &__action {
-    color: var(--brand-black);
+    color: #1a1a1a;
     display: flex;
     align-items: center;
     gap: 0.3rem;
     text-decoration: none;
     transition: color 0.2s;
-    &:hover { color: #FF6503; }
 
-    &-label { font-size: 0.82rem; font-weight: 500; }
+    &:hover { color: #FF6503; }
   }
 
   &__cart { position: relative; }
+
   &__cart-badge {
     position: absolute;
     top: -8px;
@@ -101,9 +104,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    line-height: 1;
   }
 
-  // ── Hamburger ────────────────────────────────────────────
+  // ── Hamburger ──────────────────────────────────────────────
   &__hamburger {
     background: none;
     border: none;
@@ -117,68 +121,14 @@
       display: block;
       width: 22px;
       height: 2px;
-      background: var(--brand-black);
+      background: #1a1a1a;
       border-radius: 2px;
       transition: all 0.25s;
     }
   }
 
-  // ── Desktop nav ──────────────────────────────────────────
-  &__nav {
-    border-bottom: 1px solid #ebebeb;
-    background: #fff;
-  }
-
-  &__nav-all {
-    padding: 0.7rem 1rem;
-    color: var(--brand-black);
-    border-right: 1px solid #ebebeb;
-    display: flex;
-    align-items: center;
-    transition: color 0.2s;
-    &:hover { color: #FF6503; }
-  }
-
-  &__nav-link {
-    padding: 0.7rem 1rem;
-    font-size: 0.78rem;
-    font-weight: 600;
-    color: #333;
-    letter-spacing: 0.03em;
-    border-left: 1px solid #ebebeb;
-    text-decoration: none;
-    white-space: nowrap;
-    transition: color 0.2s, background 0.2s;
-
-    &:hover, &--active {
-      color: #FF6503;
-      background: #fff5ef;
-    }
-  }
-
-  // ── Offcanvas ────────────────────────────────────────────
-  &__offcanvas {
-    max-width: 300px;
-  }
-
-  &__offcanvas-link {
-    padding: 0.6rem 0;
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: var(--brand-black);
-    text-decoration: none;
-    border-bottom: 1px solid #f0f0f0;
-    letter-spacing: 0.03em;
-    display: block;
-    transition: color 0.2s;
-
-    &:hover, &.active { color: #FF6503; }
-  }
-
-  // ── Login dropdown trigger ────────────────────────────────
-  &__login-wrap {
-    position: relative;
-  }
+  // ── Login trigger ──────────────────────────────────────────
+  &__login-wrap { position: relative; }
 
   &__login-btn {
     display: inline-flex;
@@ -189,22 +139,16 @@
     border-radius: 6px;
     padding: 0.4rem 0.75rem;
     cursor: pointer;
-    color: var(--brand-black);
+    color: #1a1a1a;
     font-size: 0.82rem;
     font-weight: 600;
     white-space: nowrap;
     transition: border-color 0.2s, color 0.2s;
 
-    &:hover {
-      border-color: #FF6503;
-      color: #FF6503;
-    }
+    &:hover { border-color: #FF6503; color: #FF6503; }
   }
 
-  &__login-label {
-    font-size: 0.8rem;
-    font-weight: 600;
-  }
+  &__login-label { font-size: 0.8rem; font-weight: 600; }
 
   &__login-chevron {
     transition: transform 0.25s ease;
@@ -212,9 +156,173 @@
 
     &--open { transform: rotate(180deg); }
   }
+
+  // ── Offcanvas ──────────────────────────────────────────────
+  &__offcanvas { max-width: 300px; }
+
+  &__offcanvas-link {
+    padding: 0.6rem 0;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    text-decoration: none;
+    border-bottom: 1px solid #f0f0f0;
+    letter-spacing: 0.03em;
+    display: block;
+    transition: color 0.2s;
+
+    &:hover,
+    &.active { color: #FF6503; }
+  }
 }
 
-// ── Login Dropdown Panel ──────────────────────────────────────────
+// ─── Desktop Nav (click-based, full-width bars) ───────────────────
+.desktop-nav {
+  background: #fff;
+  border-bottom: 1px solid #ebebeb;
+
+  // ── Row 1: Top-level ───────────────────────────────────────
+  &__top-bar {
+    background: #fff;
+    border-bottom: 1px solid #ebebeb;
+  }
+
+  &__home {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1rem;
+    min-height: 44px;
+    color: #1a1a1a;
+    text-decoration: none;
+    border-right: 1px solid #ebebeb;
+    flex-shrink: 0;
+    transition: color 0.18s, background 0.18s;
+
+    &:hover { color: #FF6503; background: #fff5ef; }
+  }
+
+  &__top-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 0 1.1rem;
+    min-height: 44px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: #222;
+    background: none;
+    border: none;
+    border-left: 1px solid #ebebeb;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color 0.18s, background 0.18s;
+
+    &:hover { color: #FF6503; background: #fff5ef; }
+
+    &--active {
+      color: #FF6503;
+      background: #fff5ef;
+      box-shadow: inset 0 -2px 0 #FF6503;
+    }
+  }
+
+  &__chevron {
+    display: inline-flex;
+    align-items: center;
+    opacity: 0.5;
+    transition: transform 0.22s ease, opacity 0.2s;
+
+    &--open { transform: rotate(180deg); opacity: 1; }
+  }
+
+  // ── Row 2: Sub-level ───────────────────────────────────────
+  &__sub-bar {
+    background: #fafafa;
+    border-bottom: 1px solid #e0e0e0;
+    animation: navBarIn 0.18s ease both;
+  }
+
+  &__sub-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0 1.1rem;
+    min-height: 40px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #333;
+    background: none;
+    border: none;
+    border-right: 1px solid #e8e8e8;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color 0.15s, background 0.15s;
+
+    &:hover { color: #FF6503; background: #fff5ef; }
+
+    &--active {
+      color: #FF6503;
+      background: #fff0e6;
+      font-weight: 600;
+    }
+
+    // Sub item that has children — subtle chevron indicator
+    &--has-child {
+      &::after {
+        content: '';
+        display: inline-block;
+        width: 5px;
+        height: 5px;
+        border-right: 1.5px solid currentColor;
+        border-bottom: 1.5px solid currentColor;
+        transform: rotate(-45deg);
+        margin-left: 4px;
+        opacity: 0.5;
+        transition: transform 0.2s, opacity 0.2s;
+      }
+    }
+
+    // When active AND has-child — arrow points down
+    &--active.desktop-nav__sub-item--has-child {
+      &::after {
+        opacity: 1;
+        transform: rotate(45deg);
+      }
+    }
+  }
+
+  // ── Row 3: Child-level ─────────────────────────────────────
+  &__child-bar {
+    background: #f0f0f0;
+    border-bottom: 2px solid #FF6503;
+    animation: navBarIn 0.16s ease both;
+  }
+
+  &__child-item {
+    display: inline-flex;
+    align-items: center;
+    padding: 0 1.25rem;
+    min-height: 38px;
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: #444;
+    text-decoration: none;
+    border-right: 1px solid #ddd;
+    white-space: nowrap;
+    transition: color 0.15s, background 0.15s;
+
+    &:hover { color: #FF6503; background: #ffe8d6; }
+  }
+}
+
+@keyframes navBarIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+// ─── Login Dropdown ───────────────────────────────────────────────
 .login-dropdown {
   position: absolute;
   top: calc(100% + 8px);
@@ -224,22 +332,20 @@
   border-radius: 10px;
   box-shadow: 0 8px 32px rgba(0,0,0,.14);
   padding: 1.1rem 1rem;
-  z-index: 2000;
+  z-index: 99999;
   border: 1px solid #ebebeb;
 
   &__title {
     font-size: 1rem;
     font-weight: 700;
     text-align: center;
-    color: var(--brand-black);
+    color: #1a1a1a;
     margin-bottom: 1rem;
     padding-bottom: 0.75rem;
     border-bottom: 1px solid #f0f0f0;
   }
 
-  &__field {
-    margin-bottom: 0.75rem;
-  }
+  &__field { margin-bottom: 0.75rem; }
 
   &__label {
     display: block;
@@ -249,9 +355,7 @@
     margin-bottom: 0.3rem;
   }
 
-  &__input-wrap {
-    position: relative;
-  }
+  &__input-wrap { position: relative; }
 
   &__input {
     width: 100%;
@@ -260,16 +364,14 @@
     border-radius: 8px;
     padding: 0 0.75rem;
     font-size: 0.85rem;
-    color: var(--brand-black);
+    color: #1a1a1a;
     background: #fff;
     outline: none;
     transition: border-color 0.2s;
 
     &:focus { border-color: #FF6503; }
 
-    .login-dropdown__input-wrap & {
-      padding-right: 2.5rem;
-    }
+    .login-dropdown__input-wrap & { padding-right: 2.5rem; }
   }
 
   &__eye {
@@ -314,21 +416,23 @@
       font-size: 0.78rem;
       color: #2563eb;
       text-decoration: underline;
+
       &:hover { color: #1d4ed8; text-decoration: none; }
     }
   }
 
   &__meta {
     font-size: 0.78rem;
-    color: var(--brand-black);
+    color: #1a1a1a;
     margin-bottom: 0.25rem;
 
     span { margin-right: 0.3rem; }
 
     a {
       font-weight: 700;
-      color: var(--brand-black);
+      color: #1a1a1a;
       text-decoration: none;
+
       &:hover { color: #FF6503; }
     }
   }
@@ -341,160 +445,55 @@
     flex-direction: column;
     gap: 0;
   }
+}
 
-  // ── Phone link ───────────────────────────────────────────────────
-  .site-header__phone-link {
-    color: var(--brand-black);
+// ─── Mobile accordion nav ─────────────────────────────────────────
+.mobile-nav {
+  &__item {
+    border-bottom: 1px solid #f0f0f0;
+
+    &--d1 { background: #fafafa; }
+    &--d2 { background: #f4f4f4; }
+  }
+
+  &__row { display: flex; align-items: center; justify-content: space-between; }
+
+  &__link {
+    flex: 1;
+    padding: 0.65rem 0.75rem;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: #1a1a1a;
     text-decoration: none;
-    font-size: 0.85rem;
-    white-space: nowrap;
     transition: color 0.2s;
-    &:hover { color: #FF6503; }
-  }
 
-  // ── Nav home icon ────────────────────────────────────────────────
-  .site-header__nav-home {
-    display: flex;
-    align-items: center;
-    padding: 0.7rem 1rem;
-    color: var(--brand-black);
-    border-right: 1px solid #ebebeb;
-    transition: color 0.2s;
-    flex-shrink: 0;
-    &:hover { color: #FF6503; }
-  }
-
-  // ── Nav chevron ──────────────────────────────────────────────────
-  .site-header__nav-chevron {
-    display: inline-flex;
-    align-items: center;
-    margin-left: 4px;
-    opacity: 0.6;
-  }
-
-  // ── Mega nav wrapper ─────────────────────────────────────────────
-  .mega-nav {
-    position: relative;
-
-    &__panel {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      min-width: 200px;
-      background: #fff;
-      border: 1px solid #ebebeb;
-      border-top: 2px solid #FF6503;
-      border-radius: 0 0 8px 8px;
-      box-shadow: 0 8px 24px rgba(0,0,0,.1);
-      padding: 0.5rem 0;
-      z-index: 1500;
-      animation: fadeInUp 0.18s ease;
-    }
-  }
-
-  // ── Mega sub-item (2nd level) ────────────────────────────────────
-  .mega-sub {
-    position: relative;
-
-    &__link {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0.45rem 1rem;
+    .mobile-nav__item--d1 & {
       font-size: 0.82rem;
       font-weight: 500;
-      color: #333;
-      text-decoration: none;
-      white-space: nowrap;
-      transition: background 0.15s, color 0.15s;
-      gap: 0.5rem;
-
-      &:hover {
-        background: #fff5ef;
-        color: #FF6503;
-      }
+      padding-left: 1.25rem;
     }
 
-    // 3rd level flyout
-    &__flyout {
-      position: absolute;
-      top: 0;
-      left: 100%;
-      min-width: 170px;
-      background: #fff;
-      border: 1px solid #ebebeb;
-      border-top: 2px solid #FF6503;
-      border-radius: 0 8px 8px 8px;
-      box-shadow: 0 8px 24px rgba(0,0,0,.1);
-      padding: 0.5rem 0;
-      z-index: 1600;
-      animation: fadeInUp 0.15s ease;
+    .mobile-nav__item--d2 & {
+      font-size: 0.78rem;
+      font-weight: 400;
+      padding-left: 1.75rem;
     }
 
-    &__flyout-link {
-      display: block;
-      padding: 0.4rem 1rem;
-      font-size: 0.8rem;
-      font-weight: 500;
-      color: #444;
-      text-decoration: none;
-      transition: background 0.15s, color 0.15s;
-
-      &:hover {
-        background: #fff5ef;
-        color: #FF6503;
-      }
-    }
+    &:hover { color: #FF6503; }
   }
 
-  // ── Mobile accordion nav ─────────────────────────────────────────
-  .mobile-nav {
-    &__item {
-      border-bottom: 1px solid #f0f0f0;
+  &__toggle {
+    background: none;
+    border: none;
+    padding: 0.65rem 0.85rem;
+    cursor: pointer;
+    color: #bbb;
+    display: flex;
+    align-items: center;
+    transition: transform 0.22s ease, color 0.2s;
 
-      &--d1 { background: #fafafa; }
-      &--d2 { background: #f5f5f5; }
-    }
-
-    &__row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    &__link {
-      flex: 1;
-      padding: 0.65rem 0.75rem;
-      font-size: 0.88rem;
-      font-weight: 600;
-      color: var(--brand-black);
-      text-decoration: none;
-      transition: color 0.2s;
-
-      .mobile-nav__item--d1 & { font-size: 0.82rem; font-weight: 500; padding-left: 1.25rem; }
-      .mobile-nav__item--d2 & { font-size: 0.78rem; font-weight: 400; padding-left: 1.75rem; }
-
-      &:hover { color: #FF6503; }
-    }
-
-    &__toggle {
-      background: none;
-      border: none;
-      padding: 0.65rem 0.75rem;
-      cursor: pointer;
-      color: #888;
-      display: flex;
-      align-items: center;
-      transition: transform 0.25s, color 0.2s;
-
-      &--open {
-        transform: rotate(180deg);
-        color: #FF6503;
-      }
-    }
-
-    &__children {
-      border-top: 1px solid #ebebeb;
-    }
+    &--open { transform: rotate(180deg); color: #FF6503; }
   }
+
+  &__children { border-top: 1px solid #ebebeb; }
 }
